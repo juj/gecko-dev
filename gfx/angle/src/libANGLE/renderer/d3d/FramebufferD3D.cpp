@@ -331,7 +331,7 @@ void FramebufferD3D::syncState(const gl::Framebuffer::DirtyBits &dirtyBits)
         invalidateColorAttachmentCache = true;
     }
 
-    for (auto dirtyBit : angle::IterateBitSet(dirtyBits))
+    for (auto dirtyBit : angle::IterateBitSet64(dirtyBits))
     {
         if ((dirtyBit >= gl::Framebuffer::DIRTY_BIT_COLOR_ATTACHMENT_0 &&
              dirtyBit < gl::Framebuffer::DIRTY_BIT_COLOR_ATTACHMENT_MAX) ||

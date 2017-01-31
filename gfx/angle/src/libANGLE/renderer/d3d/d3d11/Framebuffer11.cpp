@@ -9,6 +9,7 @@
 #include "libANGLE/renderer/d3d/d3d11/Framebuffer11.h"
 
 #include "common/debug.h"
+#include "common/BitSet64.h"
 #include "common/BitSetIterator.h"
 #include "libANGLE/renderer/d3d/d3d11/Buffer11.h"
 #include "libANGLE/renderer/d3d/d3d11/Clear11.h"
@@ -384,7 +385,7 @@ void Framebuffer11::syncState(const gl::Framebuffer::DirtyBits &dirtyBits)
     const auto &mergedDirtyBits = dirtyBits | mInternalDirtyBits;
     mInternalDirtyBits.reset();
 
-    for (auto dirtyBit : IterateBitSet(mergedDirtyBits))
+    for (auto dirtyBit : IterateBitSet64(mergedDirtyBits))
     {
         switch (dirtyBit)
         {

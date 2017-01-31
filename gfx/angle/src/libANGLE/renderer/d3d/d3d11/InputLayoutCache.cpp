@@ -10,6 +10,7 @@
 #include "libANGLE/renderer/d3d/d3d11/InputLayoutCache.h"
 
 #include "common/BitSetIterator.h"
+#include "common/BitSet64.h"
 #include "common/utilities.h"
 #include "libANGLE/Program.h"
 #include "libANGLE/VertexAttribute.h"
@@ -105,7 +106,7 @@ void SortAttributesByLayout(const gl::Program *program,
     const auto &locationToSemantic =
         GetImplAs<ProgramD3D>(program)->getAttribLocationToD3DSemantics();
 
-    for (auto locationIndex : angle::IterateBitSet(program->getActiveAttribLocationsMask()))
+    for (auto locationIndex : angle::IterateBitSet64(program->getActiveAttribLocationsMask()))
     {
         int d3dSemantic = locationToSemantic[locationIndex];
         if (sortedAttributesOut->size() <= static_cast<size_t>(d3dSemantic))
@@ -484,7 +485,7 @@ gl::Error InputLayoutCache::updateInputLayout(const gl::State &state,
     const auto &attribs            = state.getVertexArray()->getVertexAttributes();
     const auto &locationToSemantic = programD3D->getAttribLocationToD3DSemantics();
 
-    for (unsigned long attribIndex : angle::IterateBitSet(program->getActiveAttribLocationsMask()))
+    for (unsigned long attribIndex : angle::IterateBitSet64(program->getActiveAttribLocationsMask()))
     {
         // Record the type of the associated vertex shader vector in our key
         // This will prevent mismatched vertex shaders from using the same input layout

@@ -396,7 +396,7 @@ gl::Error StateManager9::setBlendDepthRasterStates(const gl::State &glState,
         mCurFrontFaceCCW = frontFaceCCW;
     }
 
-    for (auto dirtyBit : angle::IterateBitSet(mDirtyBits))
+    for (auto dirtyBit : angle::IterateBitSet64(mDirtyBits))
     {
         switch (dirtyBit)
         {

@@ -233,7 +233,7 @@ void VertexArrayGL::computeStreamingAttributeSizes(const gl::AttributesMask &act
     ASSERT(mAttributesNeedStreaming.any());
 
     const auto &attribs = mData.getVertexAttributes();
-    for (auto idx : angle::IterateBitSet(mAttributesNeedStreaming & activeAttributesMask))
+    for (auto idx : angle::IterateBitSet64(mAttributesNeedStreaming & activeAttributesMask))
     {
         const auto &attrib = attribs[idx];
         ASSERT(AttributeNeedsStreaming(attrib));
@@ -294,7 +294,7 @@ gl::Error VertexArrayGL::streamAttributes(const gl::AttributesMask &activeAttrib
         size_t curBufferOffset = bufferEmptySpace;
 
         const auto &attribs = mData.getVertexAttributes();
-        for (auto idx : angle::IterateBitSet(mAttributesNeedStreaming & activeAttributesMask))
+        for (auto idx : angle::IterateBitSet64(mAttributesNeedStreaming & activeAttributesMask))
         {
             const auto &attrib = attribs[idx];
             ASSERT(AttributeNeedsStreaming(attrib));
@@ -457,7 +457,7 @@ void VertexArrayGL::updateAttribPointer(size_t attribIndex)
 
 void VertexArrayGL::syncState(const VertexArray::DirtyBits &dirtyBits)
 {
-    for (unsigned long dirtyBit : angle::IterateBitSet(dirtyBits))
+    for (unsigned long dirtyBit : angle::IterateBitSet64(dirtyBits))
     {
         if (dirtyBit == VertexArray::DIRTY_BIT_ELEMENT_ARRAY_BUFFER)
         {

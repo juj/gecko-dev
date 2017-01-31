@@ -387,14 +387,14 @@ gl::Error VertexDataManager::storeDynamicAttribs(
     StreamingBufferUnmapper localUnmapper(mStreamingBuffer);
 
     // Reserve the required space for the dynamic buffers.
-    for (auto attribIndex : IterateBitSet(dynamicAttribsMask))
+    for (auto attribIndex : IterateBitSet64(dynamicAttribsMask))
     {
         const auto &dynamicAttrib = (*translatedAttribs)[attribIndex];
         ANGLE_TRY(reserveSpaceForAttrib(dynamicAttrib, count, instances));
     }
 
     // Store dynamic attributes
-    for (auto attribIndex : IterateBitSet(dynamicAttribsMask))
+    for (auto attribIndex : IterateBitSet64(dynamicAttribsMask))
     {
         auto *dynamicAttrib = &(*translatedAttribs)[attribIndex];
         ANGLE_TRY(storeDynamicAttrib(dynamicAttrib, start, count, instances));
@@ -408,7 +408,7 @@ void VertexDataManager::PromoteDynamicAttribs(
     const gl::AttributesMask &dynamicAttribsMask,
     GLsizei count)
 {
-    for (auto attribIndex : IterateBitSet(dynamicAttribsMask))
+    for (auto attribIndex : IterateBitSet64(dynamicAttribsMask))
     {
         const auto &dynamicAttrib = translatedAttribs[attribIndex];
         gl::Buffer *buffer = dynamicAttrib.attribute->buffer.get();

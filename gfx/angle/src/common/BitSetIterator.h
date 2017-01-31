@@ -153,3 +153,5 @@ BitSetIterator<N> IterateBitSet(const std::bitset<N> &bitset)
 }  // angle
 
 #endif  // COMMON_BITSETITERATOR_H_
+
+#include "BitSet64.h"

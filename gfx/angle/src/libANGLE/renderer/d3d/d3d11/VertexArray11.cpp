@@ -64,7 +64,7 @@ VertexArray11::~VertexArray11()
 
 void VertexArray11::syncState(const gl::VertexArray::DirtyBits &dirtyBits)
 {
-    for (auto dirtyBit : angle::IterateBitSet(dirtyBits))
+    for (auto dirtyBit : angle::IterateBitSet64(dirtyBits))
     {
         if (dirtyBit == gl::VertexArray::DIRTY_BIT_ELEMENT_ARRAY_BUFFER)
             continue;
@@ -148,7 +148,7 @@ gl::Error VertexArray11::updateDirtyAndDynamicAttribs(VertexDataManager *vertexD
         // Skip attrib locations the program doesn't use.
         const auto &activeToUpdate = (mAttribsToUpdate & activeLocations);
 
-        for (auto toUpdateIndex : angle::IterateBitSet(activeToUpdate))
+        for (auto toUpdateIndex : angle::IterateBitSet64(activeToUpdate))
         {
             mAttribsToUpdate.reset(toUpdateIndex);
             updateVertexAttribStorage(toUpdateIndex);
@@ -162,7 +162,7 @@ gl::Error VertexArray11::updateDirtyAndDynamicAttribs(VertexDataManager *vertexD
         // Skip attrib locations the program doesn't use, saving for the next frame.
         const auto &dirtyActiveAttribs = (mAttribsToTranslate & activeLocations);
 
-        for (auto dirtyAttribIndex : angle::IterateBitSet(dirtyActiveAttribs))
+        for (auto dirtyAttribIndex : angle::IterateBitSet64(dirtyActiveAttribs))
         {
             mAttribsToTranslate.reset(dirtyAttribIndex);
 
@@ -200,7 +200,7 @@ gl::Error VertexArray11::updateDirtyAndDynamicAttribs(VertexDataManager *vertexD
     {
         auto activeDynamicAttribs = (mDynamicAttribsMask & activeLocations);
 
-        for (auto dynamicAttribIndex : angle::IterateBitSet(activeDynamicAttribs))
+        for (auto dynamicAttribIndex : angle::IterateBitSet64(activeDynamicAttribs))
         {
             auto *dynamicAttrib = &mTranslatedAttribs[dynamicAttribIndex];
             const auto &currentValue =

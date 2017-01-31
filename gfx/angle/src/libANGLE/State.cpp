@@ -1933,7 +1933,7 @@ void State::syncDirtyObjects()
 
 void State::syncDirtyObjects(const DirtyObjects &bitset)
 {
-    for (auto dirtyObject : angle::IterateBitSet(bitset))
+    for (auto dirtyObject : angle::IterateBitSet64(bitset))
     {
         switch (dirtyObject)
         {

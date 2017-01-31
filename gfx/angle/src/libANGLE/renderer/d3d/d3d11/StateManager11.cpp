@@ -1092,7 +1092,7 @@ gl::Error StateManager11::updateCurrentValueAttribs(const gl::State &state,
     const auto &dirtyActiveAttribs = (activeAttribsMask & mDirtyCurrentValueAttribs);
     const auto &vertexAttributes   = state.getVertexArray()->getVertexAttributes();
 
-    for (auto attribIndex : angle::IterateBitSet(dirtyActiveAttribs))
+    for (auto attribIndex : angle::IterateBitSet64(dirtyActiveAttribs))
     {
         if (vertexAttributes[attribIndex].enabled)
             continue;
