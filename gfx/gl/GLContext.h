@@ -617,7 +617,10 @@ private:
         GLenum err = RawGetError();
 
         if (err)
-            while (RawGetError()) {}
+        {
+            int i = 32;
+            while (RawGetError() && i--) {}
+        }
 
         return err;
     }
@@ -672,7 +675,8 @@ public:
 
             const GLenum ret = mGL.fGetError();
 
-            while (mGL.fGetError()) {}
+            int i = 16;
+            while (mGL.fGetError() && i--) {}
 
             return ret;
         }
