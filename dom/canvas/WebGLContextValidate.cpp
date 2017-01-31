@@ -204,6 +204,7 @@ WebGLContext::ValidateUniformLocation(WebGLUniformLocation* loc, const char* fun
      *   ignore the data passed in, and the current uniform values will not be
      *   changed.
      */
+/*
     if (!loc)
         return false;
 
@@ -214,7 +215,7 @@ WebGLContext::ValidateUniformLocation(WebGLUniformLocation* loc, const char* fun
         ErrorInvalidOperation("%s: No program is currently bound.", funcName);
         return false;
     }
-
+    */
     return loc->ValidateForProgram(mCurrentProgram, funcName);
 }
 
@@ -222,6 +223,7 @@ bool
 WebGLContext::ValidateAttribArraySetter(const char* name, uint32_t setterElemSize,
                                         uint32_t arrayLength)
 {
+/*
     if (IsContextLost())
         return false;
 
@@ -230,7 +232,7 @@ WebGLContext::ValidateAttribArraySetter(const char* name, uint32_t setterElemSiz
                           setterElemSize);
         return false;
     }
-
+    */
     return true;
 }
 
@@ -239,15 +241,16 @@ WebGLContext::ValidateUniformSetter(WebGLUniformLocation* loc,
                                     uint8_t setterElemSize, GLenum setterType,
                                     const char* funcName)
 {
+/*
     if (IsContextLost())
         return false;
 
     if (!ValidateUniformLocation(loc, funcName))
         return false;
-
+    
     if (!loc->ValidateSizeAndType(setterElemSize, setterType, funcName))
         return false;
-
+*/
     return true;
 }
 
@@ -259,6 +262,7 @@ WebGLContext::ValidateUniformArraySetter(WebGLUniformLocation* loc,
                                          const char* funcName,
                                          uint32_t* const out_numElementsToUpload)
 {
+/*
     if (IsContextLost())
         return false;
 
@@ -270,7 +274,7 @@ WebGLContext::ValidateUniformArraySetter(WebGLUniformLocation* loc,
 
     if (!loc->ValidateArrayLength(setterElemSize, setterArraySize, funcName))
         return false;
-
+*/
     const auto& elemCount = loc->mInfo->mActiveInfo->mElemCount;
     MOZ_ASSERT(elemCount > loc->mArrayIndex);
     const uint32_t uniformElemCount = elemCount - loc->mArrayIndex;
@@ -291,7 +295,7 @@ WebGLContext::ValidateUniformMatrixArraySetter(WebGLUniformLocation* loc,
                                                uint32_t* const out_numElementsToUpload)
 {
     const uint8_t setterElemSize = setterCols * setterRows;
-
+/*
     if (IsContextLost())
         return false;
 
@@ -306,7 +310,7 @@ WebGLContext::ValidateUniformMatrixArraySetter(WebGLUniformLocation* loc,
 
     if (!ValidateUniformMatrixTranspose(setterTranspose, funcName))
         return false;
-
+*/
     const auto& elemCount = loc->mInfo->mActiveInfo->mElemCount;
     MOZ_ASSERT(elemCount > loc->mArrayIndex);
     const uint32_t uniformElemCount = elemCount - loc->mArrayIndex;
@@ -343,6 +347,7 @@ WebGLContext::ValidateAttribPointer(bool integerMode, GLuint index, GLint size, 
                                     WebGLboolean normalized, GLsizei stride,
                                     WebGLintptr byteOffset, const char* info)
 {
+    /*
     WebGLBuffer* buffer = mBoundArrayBuffer;
     if (!buffer) {
         ErrorInvalidOperation("%s: must have valid GL_ARRAY_BUFFER binding", info);
@@ -394,13 +399,14 @@ WebGLContext::ValidateAttribPointer(bool integerMode, GLuint index, GLint size, 
                               "requirement of given type", info);
         return false;
     }
-
+    */
     return true;
 }
 
 bool
 WebGLContext::ValidateStencilParamsForDrawCall()
 {
+    /*
     const char msg[] = "%s set different front and back stencil %s. Drawing in"
                        " this configuration is not allowed.";
 
@@ -418,7 +424,7 @@ WebGLContext::ValidateStencilParamsForDrawCall()
         ErrorInvalidOperation(msg, "stencilMaskSeparate", "write masks");
         return false;
     }
-
+    */
     return true;
 }
 

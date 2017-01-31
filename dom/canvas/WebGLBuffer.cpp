@@ -242,7 +242,10 @@ WebGLBuffer::ValidateCanBindToTarget(const char* funcName, GLenum target)
      * ELEMENT_ARRAY_BUFFER will generate an INVALID_OPERATION error,
      * and the state of the binding point will remain untouched.
      */
+    
+    return true;
 
+    /*
     if (mContent == WebGLBuffer::Kind::Undefined)
         return true;
 
@@ -274,6 +277,7 @@ WebGLBuffer::ValidateCanBindToTarget(const char* funcName, GLenum target)
     mContext->ErrorInvalidOperation("%s: Buffer already contains %s data.", funcName,
                                     dataType);
     return false;
+*/
 }
 
 JSObject*

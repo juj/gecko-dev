@@ -252,6 +252,7 @@ WebGL2Context::InvalidateFramebuffer(GLenum target,
     std::vector<GLenum> scopedVector;
     GLsizei glNumAttachments;
     const GLenum* glAttachments;
+    
     if (!ValidateInvalidateFramebuffer(funcName, target, attachments, &rv, &scopedVector,
                                        &glNumAttachments, &glAttachments))
     {

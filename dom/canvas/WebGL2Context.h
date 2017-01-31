@@ -210,8 +210,8 @@ public:
         if (IsContextLost())
             return;
 
-        if (!ValidateNonNull("texSubImage3D", maybeSrcView))
-            return;
+//        if (!ValidateNonNull("texSubImage3D", maybeSrcView))
+//            return;
         const auto& srcView = maybeSrcView.Value();
 
         const TexImageSourceAdapter src(&srcView, srcElemOffset);
@@ -250,8 +250,8 @@ public:
 
     void VertexAttribI4iv(GLuint index, const Int32ListU& list) {
         const auto& arr = Int32Arr::From(list);
-        if (!ValidateAttribArraySetter("vertexAttribI4iv", 4, arr.elemCount))
-            return;
+ //       if (!ValidateAttribArraySetter("vertexAttribI4iv", 4, arr.elemCount))
+ //           return;
 
         const auto& itr = arr.elemBytes;
         VertexAttribI4i(index, itr[0], itr[1], itr[2], itr[3]);
@@ -259,8 +259,8 @@ public:
 
     void VertexAttribI4uiv(GLuint index, const Uint32ListU& list) {
         const auto& arr = Uint32Arr::From(list);
-        if (!ValidateAttribArraySetter("vertexAttribI4uiv", 4, arr.elemCount))
-            return;
+//        if (!ValidateAttribArraySetter("vertexAttribI4uiv", 4, arr.elemCount))
+//            return;
 
         const auto& itr = arr.elemBytes;
         VertexAttribI4ui(index, itr[0], itr[1], itr[2], itr[3]);

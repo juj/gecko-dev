@@ -292,6 +292,7 @@ WebGLContext::VertexAttribPointer(GLuint index, GLint size, GLenum type,
                                   WebGLboolean normalized, GLsizei stride,
                                   WebGLintptr byteOffset)
 {
+    /*
     if (IsContextLost())
         return;
 
@@ -300,7 +301,7 @@ WebGLContext::VertexAttribPointer(GLuint index, GLint size, GLenum type,
 
     if (!ValidateAttribPointer(false, index, size, type, normalized, stride, byteOffset, "vertexAttribPointer"))
         return;
-
+        */
     MOZ_ASSERT(mBoundVertexArray);
 
     InvalidateBufferFetching();

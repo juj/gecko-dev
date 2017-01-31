@@ -30,7 +30,7 @@ WebGL2Context::CopyBufferSubData(GLenum readTarget, GLenum writeTarget,
     const auto& writeBuffer = ValidateBufferSelection(funcName, writeTarget);
     if (!writeBuffer)
         return;
-
+/*
     if (!ValidateNonNegative(funcName, "readOffset", readOffset) ||
         !ValidateNonNegative(funcName, "writeOffset", writeOffset) ||
         !ValidateNonNegative(funcName, "size", size))
@@ -82,7 +82,7 @@ WebGL2Context::CopyBufferSubData(GLenum readTarget, GLenum writeTarget,
                                                                           : "element");
         return;
     }
-
+*/
 //    gl->MakeCurrent();
     const ScopedLazyBind readBind(gl, readTarget, readBuffer);
     const ScopedLazyBind writeBind(gl, writeTarget, writeBuffer);

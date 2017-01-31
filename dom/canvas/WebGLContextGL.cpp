@@ -1812,8 +1812,8 @@ void
 WebGLContext::Uniform1i(WebGLUniformLocation* loc, GLint a1)
 {
     const char funcName[] = "uniform1i";
-    if (!ValidateUniformSetter(loc, 1, LOCAL_GL_INT, funcName))
-        return;
+//    if (!ValidateUniformSetter(loc, 1, LOCAL_GL_INT, funcName))
+//        return;
 
     bool error;
     const ValidateIfSampler validate(this, funcName, loc, 1, &a1, &error);
@@ -1827,9 +1827,9 @@ WebGLContext::Uniform1i(WebGLUniformLocation* loc, GLint a1)
 void
 WebGLContext::Uniform2i(WebGLUniformLocation* loc, GLint a1, GLint a2)
 {
-    const char funcName[] = "uniform2i";
-    if (!ValidateUniformSetter(loc, 2, LOCAL_GL_INT, funcName))
-        return;
+//    const char funcName[] = "uniform2i";
+//    if (!ValidateUniformSetter(loc, 2, LOCAL_GL_INT, funcName))
+//        return;
 
 //    MakeContextCurrent();
     gl->fUniform2i(loc->mLoc, a1, a2);
@@ -1838,9 +1838,9 @@ WebGLContext::Uniform2i(WebGLUniformLocation* loc, GLint a1, GLint a2)
 void
 WebGLContext::Uniform3i(WebGLUniformLocation* loc, GLint a1, GLint a2, GLint a3)
 {
-    const char funcName[] = "uniform3i";
-    if (!ValidateUniformSetter(loc, 3, LOCAL_GL_INT, funcName))
-        return;
+//    const char funcName[] = "uniform3i";
+//    if (!ValidateUniformSetter(loc, 3, LOCAL_GL_INT, funcName))
+//        return;
 
 //    MakeContextCurrent();
     gl->fUniform3i(loc->mLoc, a1, a2, a3);
@@ -1850,9 +1850,9 @@ void
 WebGLContext::Uniform4i(WebGLUniformLocation* loc, GLint a1, GLint a2, GLint a3,
                         GLint a4)
 {
-    const char funcName[] = "uniform4i";
-    if (!ValidateUniformSetter(loc, 4, LOCAL_GL_INT, funcName))
-        return;
+//    const char funcName[] = "uniform4i";
+//    if (!ValidateUniformSetter(loc, 4, LOCAL_GL_INT, funcName))
+//        return;
 
 //    MakeContextCurrent();
     gl->fUniform4i(loc->mLoc, a1, a2, a3, a4);
@@ -1863,9 +1863,9 @@ WebGLContext::Uniform4i(WebGLUniformLocation* loc, GLint a1, GLint a2, GLint a3,
 void
 WebGLContext::Uniform1f(WebGLUniformLocation* loc, GLfloat a1)
 {
-    const char funcName[] = "uniform1f";
-    if (!ValidateUniformSetter(loc, 1, LOCAL_GL_FLOAT, funcName))
-        return;
+//    const char funcName[] = "uniform1f";
+//    if (!ValidateUniformSetter(loc, 1, LOCAL_GL_FLOAT, funcName))
+//        return;
 
 //    MakeContextCurrent();
     gl->fUniform1f(loc->mLoc, a1);
@@ -1874,9 +1874,9 @@ WebGLContext::Uniform1f(WebGLUniformLocation* loc, GLfloat a1)
 void
 WebGLContext::Uniform2f(WebGLUniformLocation* loc, GLfloat a1, GLfloat a2)
 {
-    const char funcName[] = "uniform2f";
-    if (!ValidateUniformSetter(loc, 2, LOCAL_GL_FLOAT, funcName))
-        return;
+//    const char funcName[] = "uniform2f";
+//    if (!ValidateUniformSetter(loc, 2, LOCAL_GL_FLOAT, funcName))
+//        return;
 
 //    MakeContextCurrent();
     gl->fUniform2f(loc->mLoc, a1, a2);
@@ -1886,9 +1886,9 @@ void
 WebGLContext::Uniform3f(WebGLUniformLocation* loc, GLfloat a1, GLfloat a2,
                         GLfloat a3)
 {
-    const char funcName[] = "uniform3f";
-    if (!ValidateUniformSetter(loc, 3, LOCAL_GL_FLOAT, funcName))
-        return;
+//    const char funcName[] = "uniform3f";
+//    if (!ValidateUniformSetter(loc, 3, LOCAL_GL_FLOAT, funcName))
+//        return;
 
 //    MakeContextCurrent();
     gl->fUniform3f(loc->mLoc, a1, a2, a3);
@@ -1898,9 +1898,9 @@ void
 WebGLContext::Uniform4f(WebGLUniformLocation* loc, GLfloat a1, GLfloat a2,
                         GLfloat a3, GLfloat a4)
 {
-    const char funcName[] = "uniform4f";
-    if (!ValidateUniformSetter(loc, 4, LOCAL_GL_FLOAT, funcName))
-        return;
+//    const char funcName[] = "uniform4f";
+//    if (!ValidateUniformSetter(loc, 4, LOCAL_GL_FLOAT, funcName))
+//        return;
 
 //    MakeContextCurrent();
     gl->fUniform4f(loc->mLoc, a1, a2, a3, a4);
@@ -1914,17 +1914,21 @@ ValidateArrOffsetAndCount(WebGLContext* webgl, const char* funcName, size_t elem
                           GLuint elemOffset, GLuint elemCountOverride,
                           size_t* const out_elemCount)
 {
+    /*
     if (elemOffset > elemsAvail) {
         webgl->ErrorInvalidValue("%s: Bad offset into list.", funcName);
         return false;
     }
+    */
     elemsAvail -= elemOffset;
 
     if (elemCountOverride) {
+        /*
         if (elemCountOverride > elemsAvail) {
             webgl->ErrorInvalidValue("%s: Bad count override for sub-list.", funcName);
             return false;
         }
+        */
         elemsAvail = elemCountOverride;
     }
 

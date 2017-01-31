@@ -18,8 +18,11 @@ WebGLContextBoundObject::WebGLContextBoundObject(WebGLContext* webgl)
 bool
 WebGLContextBoundObject::IsCompatibleWithContext(const WebGLContext* other) const
 {
+    return true;
+/*
     return (mContext == other &&
             mContextGeneration == other->Generation());
+    */
 }
 
 } // namespace mozilla

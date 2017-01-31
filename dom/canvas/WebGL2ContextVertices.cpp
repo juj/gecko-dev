@@ -65,7 +65,7 @@ WebGL2Context::VertexAttribIPointer(GLuint index, GLint size, GLenum type, GLsiz
 {
   if (IsContextLost())
     return;
-
+  /*
   if (!ValidateAttribIndex(index, "vertexAttribIPointer"))
     return;
 
@@ -74,7 +74,7 @@ WebGL2Context::VertexAttribIPointer(GLuint index, GLint size, GLenum type, GLsiz
   {
     return;
   }
-
+  */
   MOZ_ASSERT(mBoundVertexArray);
 
   InvalidateBufferFetching();
