@@ -1649,12 +1649,89 @@ void ProgramD3D::setUniformMatrix3fv(GLint location,
     setUniformMatrixfv<3, 3>(location, count, transpose, value, GL_FLOAT_MAT3);
 }
 
+// Transposes out of place, i.e. dst != src.
+inline void mat4x4_transpose(float *dst, const float *src)
+{
+#if defined(_M_AMD64) || defined(_M_X64) || defined(__SSE__) || defined(_M_IX86_FP)
+    __m128 m0 = _mm_loadu_ps(src);
+    __m128 m1 = _mm_loadu_ps(src + 4);
+    __m128 m2 = _mm_loadu_ps(src + 8);
+    __m128 m3 = _mm_loadu_ps(src + 12);
+    __m128 tmp0 = _mm_unpacklo_ps(m0, m1);
+    __m128 tmp2 = _mm_unpacklo_ps(m2, m3);
+    __m128 tmp1 = _mm_unpackhi_ps(m0, m1);
+    __m128 tmp3 = _mm_unpackhi_ps(m2, m3);
+    _mm_storeu_ps(dst, _mm_movelh_ps(tmp0, tmp2));
+    _mm_storeu_ps(dst + 4, _mm_movehl_ps(tmp2, tmp0));
+    _mm_storeu_ps(dst + 8, _mm_movelh_ps(tmp1, tmp3));
+    _mm_storeu_ps(dst + 12, _mm_movehl_ps(tmp3, tmp1));
+#else
+    ASSERT(src != dst);
+    dst[0] = src[0];
+    dst[1] = src[4];
+    dst[2] = src[8];
+    dst[3] = src[12];
+    dst[4] = src[1];
+    dst[5] = src[5];
+    dst[6] = src[9];
+    dst[7] = src[13];
+    dst[8] = src[2];
+    dst[9] = src[6];
+    dst[10] = src[10];
+    dst[11] = src[14];
+    dst[12] = src[3];
+    dst[13] = src[7];
+    dst[14] = src[11];
+    dst[15] = src[15];
+#endif
+}
+
+inline void mat4x4_copy(float *dst, const float *src)
+{
+#if defined(_M_AMD64) || defined(_M_X64) || defined(__SSE__) || defined(_M_IX86_FP)
+    _mm_storeu_ps(dst, _mm_loadu_ps(src));
+    _mm_storeu_ps(dst + 4, _mm_loadu_ps(src + 4));
+    _mm_storeu_ps(dst + 8, _mm_loadu_ps(src + 8));
+    _mm_storeu_ps(dst + 12, _mm_loadu_ps(src + 12));
+#else
+    dst[0] = src[0];
+    dst[1] = src[1];
+    dst[2] = src[2];
+    dst[3] = src[3];
+    dst[4] = src[4];
+    dst[5] = src[5];
+    dst[6] = src[6];
+    dst[7] = src[7];
+    dst[8] = src[8];
+    dst[9] = src[9];
+    dst[10] = src[10];
+    dst[11] = src[11];
+    dst[12] = src[12];
+    dst[13] = src[13];
+    dst[14] = src[14];
+    dst[15] = src[15];
+#endif
+}
+
 void ProgramD3D::setUniformMatrix4fv(GLint location,
                                      GLsizei count,
                                      GLboolean transpose,
                                      const GLfloat *value)
 {
-    setUniformMatrixfv<4, 4>(location, count, transpose, value, GL_FLOAT_MAT4);
+    D3DUniform *targetUniform = getD3DUniformFromLocation(location);
+    unsigned int arrayElement = mState.getUniformLocations()[location].element;
+    GLfloat *target = (GLfloat *)(targetUniform->data + arrayElement * sizeof(GLfloat) * 16);
+    unsigned int cappedCount = 16*std::min(targetUniform->elementCount() - arrayElement, static_cast<unsigned int>(count));
+    // Internally store matrices as transposed versions to accomodate HLSL matrix indexing
+    if (transpose == GL_FALSE)
+    {
+        for (unsigned int i = 0; i < cappedCount; i += 16) mat4x4_transpose(target + i, value + i);
+    }
+    else
+    {
+        for (unsigned int i = 0; i < cappedCount; i += 16) mat4x4_copy(target + i, value + i);
+    }
+    targetUniform->dirty = true;
 }
 
 void ProgramD3D::setUniformMatrix2x3fv(GLint location,
