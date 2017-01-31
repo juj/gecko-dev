@@ -1941,19 +1941,25 @@ WebGLContext::UniformNiv(const char* funcName, uint8_t N, WebGLUniformLocation* 
                          const Int32Arr& arr, GLuint elemOffset, GLuint elemCountOverride)
 {
     size_t elemCount;
+    elemCount = elemCountOverride ? elemCountOverride : (arr.elemCount - elemOffset);
+/*
     if (!ValidateArrOffsetAndCount(this, funcName, arr.elemCount, elemOffset,
                                    elemCountOverride, &elemCount))
     {
         return;
     }
+*/
     const auto elemBytes = arr.elemBytes + elemOffset;
 
     uint32_t numElementsToUpload;
+    numElementsToUpload = elemCount / N;
+    /*
     if (!ValidateUniformArraySetter(loc, N, LOCAL_GL_INT, elemCount, funcName,
                                     &numElementsToUpload))
     {
         return;
     }
+    */
 
     bool error;
     const ValidateIfSampler samplerValidator(this, funcName, loc, numElementsToUpload,
@@ -1979,19 +1985,25 @@ WebGLContext::UniformNuiv(const char* funcName, uint8_t N, WebGLUniformLocation*
                           GLuint elemCountOverride)
 {
     size_t elemCount;
+    elemCount = elemCountOverride ? elemCountOverride : (arr.elemCount - elemOffset);
+/*
     if (!ValidateArrOffsetAndCount(this, funcName, arr.elemCount, elemOffset,
                                    elemCountOverride, &elemCount))
     {
         return;
     }
+*/
     const auto elemBytes = arr.elemBytes + elemOffset;
 
     uint32_t numElementsToUpload;
+    numElementsToUpload = elemCount / N;
+    /*
     if (!ValidateUniformArraySetter(loc, N, LOCAL_GL_UNSIGNED_INT, elemCount, funcName,
                                     &numElementsToUpload))
     {
         return;
     }
+    */
     MOZ_ASSERT(!loc->mInfo->mSamplerTexList, "Should not be a sampler.");
 
     static const decltype(&gl::GLContext::fUniform1uiv) kFuncList[] = {
@@ -2012,21 +2024,33 @@ WebGLContext::UniformNfv(const char* funcName, uint8_t N, WebGLUniformLocation* 
                          GLuint elemCountOverride)
 {
     size_t elemCount;
+    elemCount = elemCountOverride ? elemCountOverride : (arr.elemCount - elemOffset);
+/*
     if (!ValidateArrOffsetAndCount(this, funcName, arr.elemCount, elemOffset,
                                    elemCountOverride, &elemCount))
     {
         return;
     }
+*/
     const auto elemBytes = arr.elemBytes + elemOffset;
 
-    uint32_t numElementsToUpload;
+//    uint32_t numElementsToUpload;
+//    numElementsToUpload = elemCount / N;
+    /*
     if (!ValidateUniformArraySetter(loc, N, LOCAL_GL_FLOAT, elemCount, funcName,
                                     &numElementsToUpload))
     {
         return;
     }
+    */
     MOZ_ASSERT(!loc->mInfo->mSamplerTexList, "Should not be a sampler.");
 
+    if (N == 4) gl->fUniform4fv(loc->mLoc, elemCount >> 2, elemBytes);
+    else if (N == 3) gl->fUniform3fv(loc->mLoc, elemCount / 3, elemBytes);
+    else if (N == 2) gl->fUniform2fv(loc->mLoc, elemCount >> 1, elemBytes);
+    else if (N == 1) gl->fUniform1fv(loc->mLoc, elemCount, elemBytes);
+
+    /*
     static const decltype(&gl::GLContext::fUniform1fv) kFuncList[] = {
         &gl::GLContext::fUniform1fv,
         &gl::GLContext::fUniform2fv,
@@ -2034,9 +2058,9 @@ WebGLContext::UniformNfv(const char* funcName, uint8_t N, WebGLUniformLocation* 
         &gl::GLContext::fUniform4fv
     };
     const auto func = kFuncList[N-1];
-
+    */
 //    MakeContextCurrent();
-    (gl->*func)(loc->mLoc, numElementsToUpload, elemBytes);
+//    (gl->*func)(loc->mLoc, numElementsToUpload, elemBytes);
 }
 
 void
@@ -2046,20 +2070,33 @@ WebGLContext::UniformMatrixAxBfv(const char* funcName, uint8_t A, uint8_t B,
                                  GLuint elemCountOverride)
 {
     size_t elemCount;
+    elemCount = elemCountOverride ? elemCountOverride : (arr.elemCount - elemOffset);
+
+    /*
     if (!ValidateArrOffsetAndCount(this, funcName, arr.elemCount, elemOffset,
                                    elemCountOverride, &elemCount))
     {
         return;
     }
+    */
     const auto elemBytes = arr.elemBytes + elemOffset;
 
-    uint32_t numElementsToUpload;
+    /*
     if (!ValidateUniformMatrixArraySetter(loc, A, B, LOCAL_GL_FLOAT, elemCount,
                                           transpose, funcName, &numElementsToUpload))
     {
         return;
     }
     MOZ_ASSERT(!loc->mInfo->mSamplerTexList, "Should not be a sampler.");
+    */
+
+    if (A == 4 && B == 4)
+    {
+        gl->fUniformMatrix4fv(loc->mLoc, elemCount >> 4, transpose, elemBytes);
+        return;
+    }
+    uint32_t numElementsToUpload;
+    numElementsToUpload = elemCount / (A*B);
 
     static const decltype(&gl::GLContext::fUniformMatrix2fv) kFuncList[] = {
         &gl::GLContext::fUniformMatrix2fv,
