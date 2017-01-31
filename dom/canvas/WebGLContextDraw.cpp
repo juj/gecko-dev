@@ -817,18 +817,21 @@ WebGLContext::DrawElements(GLenum mode, GLsizei vertCount, GLenum type,
     {
         ScopedDrawCallWrapper wrapper(*this);
         {
+            /*
             UniquePtr<gl::GLContext::LocalErrorScope> errorScope;
 
             if (gl->IsANGLE()) {
                 errorScope.reset(new gl::GLContext::LocalErrorScope(*gl));
             }
+            */
 
             gl->fDrawElements(mode, vertCount, type,
                               reinterpret_cast<GLvoid*>(byteOffset));
-
+            /*
             if (errorScope) {
                 HandleDrawElementsErrors(this, funcName, *errorScope);
             }
+            */
         }
     }
 
@@ -864,18 +867,21 @@ WebGLContext::DrawElementsInstanced(GLenum mode, GLsizei vertCount, GLenum type,
     {
         ScopedDrawCallWrapper wrapper(*this);
         {
+            /*
             UniquePtr<gl::GLContext::LocalErrorScope> errorScope;
 
             if (gl->IsANGLE()) {
                 errorScope.reset(new gl::GLContext::LocalErrorScope(*gl));
             }
-
+            */
             gl->fDrawElementsInstanced(mode, vertCount, type,
                                        reinterpret_cast<GLvoid*>(byteOffset),
                                        instanceCount);
+            /*
             if (errorScope) {
                 HandleDrawElementsErrors(this, funcName, *errorScope);
             }
+            */
         }
     }
 
@@ -1153,15 +1159,16 @@ WebGLContext::DoFakeVertexAttrib0(const char* funcName, GLuint vertexCount)
     }
 
     {
-        gl::GLContext::LocalErrorScope errorScope(*gl);
+//        gl::GLContext::LocalErrorScope errorScope(*gl);
 
         gl->fBufferSubData(LOCAL_GL_ARRAY_BUFFER, 0, dataSize, data.get());
-
+        /*
         const auto err = errorScope.GetError();
         if (err) {
             ErrorOutOfMemory("%s: Failed to upload fake vertex attrib 0 data.", funcName);
             return false;
         }
+        */
     }
 
     ////

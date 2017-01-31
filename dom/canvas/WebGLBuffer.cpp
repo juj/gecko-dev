@@ -127,8 +127,9 @@ WebGLBuffer::BufferData(GLenum target, size_t size, const void* data, GLenum usa
 
     const bool sizeChanges = (size != ByteLength());
     if (sizeChanges) {
-        gl::GLContext::LocalErrorScope errorScope(*gl);
+//        gl::GLContext::LocalErrorScope errorScope(*gl);
         gl->fBufferData(target, size, data, usage);
+        /*
         const auto error = errorScope.GetError();
 
         if (error) {
@@ -136,6 +137,7 @@ WebGLBuffer::BufferData(GLenum target, size_t size, const void* data, GLenum usa
             mContext->ErrorOutOfMemory("%s: Error from driver: 0x%04x", funcName, error);
             return;
         }
+        */
     } else {
         gl->fBufferData(target, size, data, usage);
     }

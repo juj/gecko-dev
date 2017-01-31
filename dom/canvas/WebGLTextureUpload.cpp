@@ -870,7 +870,7 @@ DoTexSubImage(gl::GLContext* gl, TexImageTarget target, GLint level, GLint xOffs
               GLint yOffset, GLint zOffset, GLsizei width, GLsizei height, GLsizei depth,
               const webgl::PackingInfo& pi, const void* data)
 {
-    gl::GLContext::LocalErrorScope errorScope(*gl);
+//    gl::GLContext::LocalErrorScope errorScope(*gl);
 
     if (IsTarget3D(target)) {
         gl->fTexSubImage3D(target.get(), level, xOffset, yOffset, zOffset, width, height,
@@ -882,7 +882,8 @@ DoTexSubImage(gl::GLContext* gl, TexImageTarget target, GLint level, GLint xOffs
                            pi.format, pi.type, data);
     }
 
-    return errorScope.GetError();
+    return 0;
+//    return errorScope.GetError();
 }
 
 static inline GLenum
@@ -912,7 +913,7 @@ DoCompressedTexSubImage(gl::GLContext* gl, TexImageTarget target, GLint level,
                         GLsizei height, GLsizei depth, GLenum sizedUnpackFormat,
                         GLsizei dataSize, const void* data)
 {
-    gl::GLContext::LocalErrorScope errorScope(*gl);
+//    gl::GLContext::LocalErrorScope errorScope(*gl);
 
     if (IsTarget3D(target)) {
         gl->fCompressedTexSubImage3D(target.get(), level, xOffset, yOffset, zOffset,
@@ -925,7 +926,8 @@ DoCompressedTexSubImage(gl::GLContext* gl, TexImageTarget target, GLint level,
                                      height, sizedUnpackFormat, dataSize, data);
     }
 
-    return errorScope.GetError();
+    return 0;
+//    return errorScope.GetError();
 }
 
 static inline GLenum
@@ -948,7 +950,7 @@ DoCopyTexSubImage(gl::GLContext* gl, TexImageTarget target, GLint level, GLint x
                   GLint yOffset, GLint zOffset, GLint x, GLint y, GLsizei width,
                   GLsizei height)
 {
-    gl::GLContext::LocalErrorScope errorScope(*gl);
+//    gl::GLContext::LocalErrorScope errorScope(*gl);
 
     if (IsTarget3D(target)) {
         gl->fCopyTexSubImage3D(target.get(), level, xOffset, yOffset, zOffset, x, y,
@@ -959,7 +961,8 @@ DoCopyTexSubImage(gl::GLContext* gl, TexImageTarget target, GLint level, GLint x
                                height);
     }
 
-    return errorScope.GetError();
+    return 0;
+//    return errorScope.GetError();
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////

@@ -616,13 +616,13 @@ TexUnpackImage::TexOrSubImage(bool isSubImage, bool needsRespec, const char* fun
         gl::ScopedBindFramebuffer bindFB(gl, scopedFB.FB());
 
         {
-            gl::GLContext::LocalErrorScope errorScope(*gl);
+//            gl::GLContext::LocalErrorScope errorScope(*gl);
 
             gl->fFramebufferTexture2D(LOCAL_GL_FRAMEBUFFER, LOCAL_GL_COLOR_ATTACHMENT0,
                                       target.get(), tex->mGLName, level);
 
-            if (errorScope.GetError())
-                break;
+//            if (errorScope.GetError())
+//                break;
         }
 
         const GLenum status = gl->fCheckFramebufferStatus(LOCAL_GL_FRAMEBUFFER);
