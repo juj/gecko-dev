@@ -20,7 +20,7 @@ WebGLContext::Clear(GLbitfield mask)
     if (IsContextLost())
         return;
 
-    MakeContextCurrent();
+//    MakeContextCurrent();
 
     uint32_t m = mask & (LOCAL_GL_COLOR_BUFFER_BIT | LOCAL_GL_DEPTH_BUFFER_BIT | LOCAL_GL_STENCIL_BUFFER_BIT);
     if (mask != m)
@@ -79,7 +79,7 @@ WebGLContext::ClearColor(GLfloat r, GLfloat g, GLfloat b, GLfloat a)
     if (IsContextLost())
         return;
 
-    MakeContextCurrent();
+//    MakeContextCurrent();
 
     const bool supportsFloatColorBuffers = (IsExtensionEnabled(WebGLExtensionID::EXT_color_buffer_float) ||
                                             IsExtensionEnabled(WebGLExtensionID::EXT_color_buffer_half_float) ||
@@ -105,7 +105,7 @@ WebGLContext::ClearDepth(GLclampf v)
     if (IsContextLost())
         return;
 
-    MakeContextCurrent();
+//    MakeContextCurrent();
     mDepthClearValue = GLClampFloat(v);
     gl->fClearDepth(mDepthClearValue);
 }
@@ -116,7 +116,7 @@ WebGLContext::ClearStencil(GLint v)
     if (IsContextLost())
         return;
 
-    MakeContextCurrent();
+//    MakeContextCurrent();
     mStencilClearValue = v;
     gl->fClearStencil(v);
 }
@@ -127,7 +127,7 @@ WebGLContext::ColorMask(WebGLboolean r, WebGLboolean g, WebGLboolean b, WebGLboo
     if (IsContextLost())
         return;
 
-    MakeContextCurrent();
+//    MakeContextCurrent();
     mColorWriteMask[0] = r;
     mColorWriteMask[1] = g;
     mColorWriteMask[2] = b;
@@ -141,7 +141,7 @@ WebGLContext::DepthMask(WebGLboolean b)
     if (IsContextLost())
         return;
 
-    MakeContextCurrent();
+//    MakeContextCurrent();
     mDepthWriteMask = b;
     gl->fDepthMask(b);
 }
@@ -195,7 +195,7 @@ WebGLContext::StencilMask(GLuint mask)
     mStencilWriteMaskFront = mask;
     mStencilWriteMaskBack = mask;
 
-    MakeContextCurrent();
+//    MakeContextCurrent();
     gl->fStencilMask(mask);
 }
 
@@ -221,7 +221,7 @@ WebGLContext::StencilMaskSeparate(GLenum face, GLuint mask)
             break;
     }
 
-    MakeContextCurrent();
+//    MakeContextCurrent();
     gl->fStencilMaskSeparate(face, mask);
 }
 

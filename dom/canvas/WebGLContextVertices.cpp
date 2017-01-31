@@ -74,7 +74,7 @@ WebGLContext::VertexAttrib4f(GLuint index, GLfloat x, GLfloat y, GLfloat z, GLfl
 
     ////
 
-    gl->MakeCurrent();
+//    gl->MakeCurrent();
     if (index || !gl->IsCompatibilityProfile()) {
         gl->fVertexAttrib4f(index, x, y, z, w);
     }
@@ -105,7 +105,7 @@ WebGL2Context::VertexAttribI4i(GLuint index, GLint x, GLint y, GLint z, GLint w,
 
     ////
 
-    gl->MakeCurrent();
+//    gl->MakeCurrent();
     if (index || !gl->IsCompatibilityProfile()) {
         gl->fVertexAttribI4i(index, x, y, z, w);
     }
@@ -136,7 +136,7 @@ WebGL2Context::VertexAttribI4ui(GLuint index, GLuint x, GLuint y, GLuint z, GLui
 
     ////
 
-    gl->MakeCurrent();
+//    gl->MakeCurrent();
     if (index || !gl->IsCompatibilityProfile()) {
         gl->fVertexAttribI4ui(index, x, y, z, w);
     }
@@ -162,7 +162,7 @@ WebGLContext::EnableVertexAttribArray(GLuint index)
     if (!ValidateAttribIndex(index, "enableVertexAttribArray"))
         return;
 
-    MakeContextCurrent();
+//    MakeContextCurrent();
     InvalidateBufferFetching();
 
     gl->fEnableVertexAttribArray(index);
@@ -180,7 +180,7 @@ WebGLContext::DisableVertexAttribArray(GLuint index)
     if (!ValidateAttribIndex(index, "disableVertexAttribArray"))
         return;
 
-    MakeContextCurrent();
+//    MakeContextCurrent();
     InvalidateBufferFetching();
 
     if (index || !gl->IsCompatibilityProfile()) {
@@ -310,7 +310,7 @@ WebGLContext::VertexAttribPointer(GLuint index, GLint size, GLenum type,
      return ErrorInvalidOperation("vertexAttribPointer: type must match bound VBO type: %d != %d", type, mBoundArrayBuffer->GLType());
      */
 
-    MakeContextCurrent();
+//    MakeContextCurrent();
     gl->fVertexAttribPointer(index, size, type, normalized, stride,
                              reinterpret_cast<void*>(byteOffset));
 
@@ -336,7 +336,7 @@ WebGLContext::VertexAttribDivisor(GLuint index, GLuint divisor)
 
     InvalidateBufferFetching();
 
-    MakeContextCurrent();
+//    MakeContextCurrent();
 
     gl->fVertexAttribDivisor(index, divisor);
 }

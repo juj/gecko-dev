@@ -1363,7 +1363,7 @@ WebGLProgram::UseProgram() const
         return false;
     }
 
-    mContext->MakeContextCurrent();
+//    mContext->MakeContextCurrent();
 
     mContext->InvalidateBufferFetching();
 

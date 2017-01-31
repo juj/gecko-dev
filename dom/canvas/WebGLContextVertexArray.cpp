@@ -23,7 +23,7 @@ WebGLContext::BindVertexArray(WebGLVertexArray* array)
 
     InvalidateBufferFetching();
 
-    MakeContextCurrent();
+//    MakeContextCurrent();
 
     if (mBoundVertexArray) {
         mBoundVertexArray->AddBufferBindCounts(-1);

@@ -1366,7 +1366,7 @@ WebGLTexture::TexSubImage(const char* funcName, TexImageTarget target, GLint lev
     ////////////////////////////////////
     // Do the thing!
 
-    mContext->gl->MakeCurrent();
+    //mContext->gl->MakeCurrent();
 
     bool uploadWillInitialize;
     if (!EnsureImageDataInitializedForUpload(this, funcName, target, level, xOffset,
@@ -1638,7 +1638,7 @@ WebGLTexture::CompressedTexSubImage(const char* funcName, TexImageTarget target,
     ////////////////////////////////////
     // Do the thing!
 
-    mContext->gl->MakeCurrent();
+    //mContext->gl->MakeCurrent();
 
     bool uploadWillInitialize;
     if (!EnsureImageDataInitializedForUpload(this, funcName, target, level, xOffset,
@@ -2154,7 +2154,7 @@ WebGLTexture::CopyTexImage2D(TexImageTarget target, GLint level, GLenum internal
     ////////////////////////////////////
     // Do the thing!
 
-    mContext->gl->MakeCurrent();
+    //mContext->gl->MakeCurrent();
     mContext->OnBeforeReadCall();
 
     const bool isSubImage = false;
@@ -2232,7 +2232,7 @@ WebGLTexture::CopyTexSubImage(const char* funcName, TexImageTarget target, GLint
     ////////////////////////////////////
     // Do the thing!
 
-    mContext->gl->MakeCurrent();
+    //mContext->gl->MakeCurrent();
     mContext->OnBeforeReadCall();
 
     bool uploadWillInitialize;

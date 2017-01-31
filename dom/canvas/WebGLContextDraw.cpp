@@ -554,7 +554,7 @@ WebGLContext::DrawArrays(GLenum mode, GLint first, GLsizei vertCount)
     if (IsContextLost())
         return;
 
-    MakeContextCurrent();
+//    MakeContextCurrent();
 
     bool error = false;
     ScopedResolveTexturesForDraw scopedResolve(this, funcName, &error);
@@ -591,7 +591,7 @@ WebGLContext::DrawArraysInstanced(GLenum mode, GLint first, GLsizei vertCount,
     if (IsContextLost())
         return;
 
-    MakeContextCurrent();
+//    MakeContextCurrent();
 
     bool error = false;
     ScopedResolveTexturesForDraw scopedResolve(this, funcName, &error);
@@ -788,7 +788,7 @@ WebGLContext::DrawElements(GLenum mode, GLsizei vertCount, GLenum type,
     if (IsContextLost())
         return;
 
-    MakeContextCurrent();
+//    MakeContextCurrent();
 
     bool error = false;
     ScopedResolveTexturesForDraw scopedResolve(this, funcName, &error);
@@ -833,7 +833,7 @@ WebGLContext::DrawElementsInstanced(GLenum mode, GLsizei vertCount, GLenum type,
     if (IsContextLost())
         return;
 
-    MakeContextCurrent();
+//    MakeContextCurrent();
 
     bool error = false;
     ScopedResolveTexturesForDraw scopedResolve(this, funcName, &error);

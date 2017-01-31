@@ -62,7 +62,7 @@ WebGL2Context::ValidateClearBuffer(const char* funcName, GLenum buffer, GLint dr
 
     ////
 
-    MakeContextCurrent();
+//    MakeContextCurrent();
 
     const auto& fb = mBoundDrawFramebuffer;
     if (fb) {

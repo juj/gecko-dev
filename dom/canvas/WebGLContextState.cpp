@@ -37,7 +37,7 @@ WebGLContext::Disable(GLenum cap)
         *trackingSlot = 0;
     }
 
-    MakeContextCurrent();
+//    MakeContextCurrent();
     gl->fDisable(cap);
 }
 
@@ -57,7 +57,7 @@ WebGLContext::Enable(GLenum cap)
         *trackingSlot = 1;
     }
 
-    MakeContextCurrent();
+//    MakeContextCurrent();
     gl->fEnable(cap);
 }
 

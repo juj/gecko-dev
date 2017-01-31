@@ -1472,7 +1472,7 @@ WebGLContext::MozGetUnderlyingParamString(uint32_t pname, nsAString& retval)
 void
 WebGLContext::ClearScreen()
 {
-    MakeContextCurrent();
+//    MakeContextCurrent();
     ScopedBindFramebuffer autoFB(gl, 0);
 
     const bool changeDrawBuffers = (mDefaultFB_DrawBuffer0 != LOCAL_GL_BACK);
@@ -1497,7 +1497,7 @@ void
 WebGLContext::ForceClearFramebufferWithDefaultValues(GLbitfield clearBits,
                                                      bool fakeNoAlpha)
 {
-    MakeContextCurrent();
+//    MakeContextCurrent();
 
     const bool initializeColorBuffer = bool(clearBits & LOCAL_GL_COLOR_BUFFER_BIT);
     const bool initializeDepthBuffer = bool(clearBits & LOCAL_GL_DEPTH_BUFFER_BIT);

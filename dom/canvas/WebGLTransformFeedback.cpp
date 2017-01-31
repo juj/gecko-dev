@@ -92,7 +92,7 @@ WebGLTransformFeedback::BeginTransformFeedback(GLenum primMode)
     ////
 
     const auto& gl = mContext->gl;
-    gl->MakeCurrent();
+//    gl->MakeCurrent();
     gl->fBeginTransformFeedback(primMode);
 
     ////
@@ -122,7 +122,7 @@ WebGLTransformFeedback::EndTransformFeedback()
     ////
 
     const auto& gl = mContext->gl;
-    gl->MakeCurrent();
+//    gl->MakeCurrent();
     gl->fEndTransformFeedback();
 
     ////
@@ -150,7 +150,7 @@ WebGLTransformFeedback::PauseTransformFeedback()
     ////
 
     const auto& gl = mContext->gl;
-    gl->MakeCurrent();
+//    gl->MakeCurrent();
     gl->fPauseTransformFeedback();
 
     ////
@@ -175,7 +175,7 @@ WebGLTransformFeedback::ResumeTransformFeedback()
     ////
 
     const auto& gl = mContext->gl;
-    gl->MakeCurrent();
+//    gl->MakeCurrent();
     gl->fResumeTransformFeedback();
 
     ////

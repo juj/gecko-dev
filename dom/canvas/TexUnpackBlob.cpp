@@ -588,7 +588,7 @@ TexUnpackImage::TexOrSubImage(bool isSubImage, bool needsRespec, const char* fun
     WebGLContext* webgl = tex->mContext;
 
     gl::GLContext* gl = webgl->GL();
-    gl->MakeCurrent();
+//    gl->MakeCurrent();
 
     if (needsRespec) {
         *out_error = DoTexOrSubImage(isSubImage, gl, target.get(), level, dui, xOffset,
@@ -653,6 +653,9 @@ TexUnpackImage::TexOrSubImage(bool isSubImage, bool needsRespec, const char* fun
     if (surf) {
         // WARNING: OSX can lose our MakeCurrent here.
         dataSurf = surf->GetDataSurface();
+
+        // XXX:
+        gl->MakeCurrent();
     }
     if (!dataSurf) {
         webgl->ErrorOutOfMemory("%s: GetAsSourceSurface or GetDataSurface failed after"
@@ -810,7 +813,7 @@ TexUnpackSurface::TexOrSubImage(bool isSubImage, bool needsRespec, const char* f
     ////
 
     const auto& gl = webgl->gl;
-    MOZ_ALWAYS_TRUE( gl->MakeCurrent() );
+//    MOZ_ALWAYS_TRUE( gl->MakeCurrent() );
 
     gl->fPixelStorei(LOCAL_GL_UNPACK_ALIGNMENT, dstAlignment);
     if (webgl->IsWebGL2()) {

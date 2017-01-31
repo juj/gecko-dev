@@ -197,7 +197,7 @@ WebGLSampler::SamplerParameter(const char* funcName, GLenum pname,
 
     ////
 
-    mContext->gl->MakeCurrent();
+//    mContext->gl->MakeCurrent();
     if (param.isFloat) {
         mContext->gl->fSamplerParameterf(mGLName, pname, param.f);
     } else {

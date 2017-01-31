@@ -64,7 +64,7 @@ WebGL2Context::BindSampler(GLuint unit, WebGLSampler* sampler)
 
     ////
 
-    gl->MakeCurrent();
+//    gl->MakeCurrent();
     gl->fBindSampler(unit, sampler ? sampler->mGLName : 0);
 
     InvalidateResolveCacheForTextureWithTexUnit(unit);

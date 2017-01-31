@@ -148,7 +148,7 @@ WebGLContext::BindBuffer(GLenum target, WebGLBuffer* buffer)
     if (buffer && !buffer->ValidateCanBindToTarget(funcName, target))
         return;
 
-    gl->MakeCurrent();
+//    gl->MakeCurrent();
     gl->fBindBuffer(target, buffer ? buffer->mGLName : 0);
 
     WebGLBuffer::SetSlot(target, buffer, slot);
@@ -215,7 +215,7 @@ WebGLContext::BindBufferBase(GLenum target, GLuint index, WebGLBuffer* buffer)
 
     ////
 
-    gl->MakeCurrent();
+//    gl->MakeCurrent();
     gl->fBindBufferBase(target, index, buffer ? buffer->mGLName : 0);
 
     ////
@@ -265,7 +265,7 @@ WebGLContext::BindBufferRange(GLenum target, GLuint index, WebGLBuffer* buffer,
 
     ////
 
-    gl->MakeCurrent();
+//    gl->MakeCurrent();
 
     switch (target) {
     case LOCAL_GL_TRANSFORM_FEEDBACK_BUFFER:
@@ -412,7 +412,7 @@ WebGLContext::BufferSubDataImpl(GLenum target, WebGLsizeiptr dstByteOffset,
 
     ////
 
-    MakeContextCurrent();
+//    MakeContextCurrent();
     const ScopedLazyBind lazyBind(gl, target, buffer);
 
     // Warning: Possibly shared memory.  See bug 1225033.

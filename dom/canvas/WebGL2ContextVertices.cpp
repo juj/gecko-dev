@@ -79,7 +79,7 @@ WebGL2Context::VertexAttribIPointer(GLuint index, GLint size, GLenum type, GLsiz
 
   InvalidateBufferFetching();
 
-  MakeContextCurrent();
+//  MakeContextCurrent();
   gl->fVertexAttribIPointer(index, size, type, stride, reinterpret_cast<void*>(offset));
 
   WebGLVertexAttribData& vd = mBoundVertexArray->mAttribs[index];

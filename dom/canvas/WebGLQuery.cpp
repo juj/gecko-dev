@@ -99,7 +99,7 @@ WebGLQuery::BeginQuery(GLenum target, WebGLRefPtr<WebGLQuery>& slot)
     ////
 
     const auto& gl = mContext->gl;
-    gl->MakeCurrent();
+//    gl->MakeCurrent();
 
     const auto driverTarget = TargetForDriver(gl, mTarget);
     gl->fBeginQuery(driverTarget, mGLName);
@@ -115,7 +115,7 @@ WebGLQuery::EndQuery()
     ////
 
     const auto& gl = mContext->gl;
-    gl->MakeCurrent();
+//    gl->MakeCurrent();
 
     const auto driverTarget = TargetForDriver(gl, mTarget);
     gl->fEndQuery(driverTarget);
@@ -248,7 +248,7 @@ WebGLQuery::QueryCounter(const char* funcName, GLenum target)
     mCanBeAvailable = false;
 
     const auto& gl = mContext->gl;
-    gl->MakeCurrent();
+//    gl->MakeCurrent();
     gl->fQueryCounter(mGLName, mTarget);
 
     NS_DispatchToCurrentThread(new AvailableRunnable(this));

@@ -1311,7 +1311,7 @@ WebGLFramebuffer::DrawBuffers(const char* funcName, const dom::Sequence<GLenum>&
 
     ////
 
-    mContext->MakeContextCurrent();
+//    mContext->MakeContextCurrent();
 
     mColorDrawBuffers.swap(newColorDrawBuffers);
     RefreshDrawBuffers(); // Calls glDrawBuffers.
@@ -1336,7 +1336,7 @@ WebGLFramebuffer::ReadBuffer(const char* funcName, GLenum attachPoint)
 
     ////
 
-    mContext->MakeContextCurrent();
+//    mContext->MakeContextCurrent();
 
     mColorReadBuffer = attach;
     RefreshReadBuffer(); // Calls glReadBuffer.
@@ -1905,7 +1905,7 @@ WebGLFramebuffer::BlitFramebuffer(WebGLContext* webgl,
 
     ////
 
-    gl->MakeCurrent();
+//    gl->MakeCurrent();
     webgl->OnBeforeReadCall();
     WebGLContext::ScopedDrawCallWrapper wrapper(*webgl);
     gl->fBlitFramebuffer(srcX0, srcY0, srcX1, srcY1,

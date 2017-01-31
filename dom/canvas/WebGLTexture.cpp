@@ -924,7 +924,7 @@ WebGLTexture::GenerateMipmap(TexTarget texTarget)
 
     // Done with validation. Do the operation.
 
-    mContext->MakeContextCurrent();
+//    mContext->MakeContextCurrent();
     gl::GLContext* gl = mContext->gl;
 
     if (gl->WorkAroundDriverBugs()) {
@@ -1209,7 +1209,7 @@ WebGLTexture::TexParameter(TexTarget texTarget, GLenum pname, const FloatOrInt& 
 
     ////////////////
 
-    mContext->MakeContextCurrent();
+//    mContext->MakeContextCurrent();
     if (!clamped.isFloat)
         mContext->gl->fTexParameteri(texTarget.get(), pname, clamped.i);
     else

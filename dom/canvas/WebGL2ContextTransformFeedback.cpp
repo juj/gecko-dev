@@ -87,7 +87,7 @@ WebGL2Context::BindTransformFeedback(GLenum target, WebGLTransformFeedback* tf)
 
     mBoundTransformFeedback = (tf ? tf : mDefaultTransformFeedback);
 
-    MakeContextCurrent();
+//    MakeContextCurrent();
     gl->fBindTransformFeedback(target, mBoundTransformFeedback->mGLName);
 
     if (mBoundTransformFeedback) {
