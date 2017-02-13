@@ -278,6 +278,7 @@ WebGLContext::BindBufferRange(GLenum target, GLuint index, WebGLBuffer* buffer,
 
     case LOCAL_GL_UNIFORM_BUFFER:
         {
+        /*
             GLuint offsetAlignment = 0;
             gl->GetUIntegerv(LOCAL_GL_UNIFORM_BUFFER_OFFSET_ALIGNMENT, &offsetAlignment);
             if (offset % offsetAlignment != 0) {
@@ -286,6 +287,7 @@ WebGLContext::BindBufferRange(GLenum target, GLuint index, WebGLBuffer* buffer,
                                   "UNIFORM_BUFFER_OFFSET_ALIGNMENT");
                 return;
             }
+        */
         }
         break;
     }
